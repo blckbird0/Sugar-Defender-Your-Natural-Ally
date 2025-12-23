@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sugar Defender - Special Offer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top red stripe (simple click) -->
+  <div class="top-stripe" onclick="goToAffiliate()">
+    <span class="product-name">🍬 Sugar Defender</span>
+  </div>
+
+  <main class="container">
+
+    <!-- Product + Info side by side -->
+    <div class="product-info">
+      <img class="product-single" src="https://sugardefender24.com/assets/img/2bootle-fruits.webp" alt="Sugar Defender Two Bottles with Fruits">
+      <img class="info-label" src="https://sugardefender24.com/assets/img/mobile-label.webp" alt="Product Info">
+    </div>
+
+    <h1>🍬 Sugar Defender – Your Natural Ally</h1>
+
+    <p class="subtitle">
+      Advanced formula designed to support healthy blood sugar levels and promote daily wellness.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown">
+      ⏰ Offer ends in <span id="timer">15:00</span>
+    </div>
+
+    <!-- Claims -->
+    <ul class="claims">
+      <li>🌟 Supports healthy blood sugar levels</li>
+      <li>💎 Natural formula with selected ingredients</li>
+      <li>🍀 Promotes energy and daily vitality</li>
+      <li>🚀 Designed to fit your lifestyle</li>
+    </ul>
+
+    <!-- Pricing -->
+    <div class="pricing">
+      <span class="discount">💥 50% DISCOUNT</span>
+      <div class="prices">
+        <span class="old-price">$98 USD</span>
+        <span class="new-price">$49 USD</span>
+      </div>
+      <p class="price-note">
+        Exclusive limited-time offer
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <button class="cta" onclick="goToAffiliate()">
+      👉 Order Sugar Defender Now
+    </button>
+
+    <p class="disclaimer">
+      *This product is a dietary supplement. It is not a medicine.
+      It does not replace a balanced diet or medical treatment.
+      Results may vary from person to person.*
+    </p>
+
+    <!-- 3-bottle product image at the bottom -->
+    <img class="product-three" src="https://sugardefender24.com/assets/img/SUGARDEFENDERx3-500px.webp" alt="Sugar Defender 3 Bottles">
+
+  </main>
+
+  <!-- Bottom red stripe with cookie button -->
+  <div class="bottom-stripe">
+    <span class="offer-text">We use cookies to improve your experience.</span>
+    <button class="cookie-btn" id="cookieBtn">Click here to accept cookies</button>
+  </div>
+
+  <!-- Affiliate + Cookie Script -->
+  <script>
+    const AFFILIATE_URL = "https://sugardefender24.com/d/order-now.php#aff=Felipe0Botelho";
+
+    // Simple click redirect (top stripe + main CTA)
+    function goToAffiliate() {
+      window.open(AFFILIATE_URL, "_blank");
+    }
+
+    // Bottom cookie button: set cookie then redirect
+    const cookieBtn = document.getElementById("cookieBtn");
+    cookieBtn.addEventListener("click", () => {
+      document.cookie = "stripeClicked=true; max-age=" + 60*60*24 + "; path=/";
+      window.open(AFFILIATE_URL, "_blank");
+      cookieBtn.textContent = "Cookies accepted ✅";
+      cookieBtn.disabled = true;
+      cookieBtn.classList.add("cookie-btn--accepted");
+    });
+
+    // Countdown timer
+    let time = 15 * 60; // 15 minutes in seconds
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      const m = Math.floor(time / 60);
+      const s = time % 60;
+      timerEl.textContent = `${m}:${s < 10 ? "0" + s : s}`;
+      if (time > 0) time--;
+    }
+    setInterval(updateTimer, 1000);
+
+    // If cookie already exists, reflect accepted state
+    if (document.cookie.includes("stripeClicked=true")) {
+      cookieBtn.textContent = "Cookies accepted ✅";
+      cookieBtn.disabled = true;
+      cookieBtn.classList.add("cookie-btn--accepted");
+    }
+  </script>
+
+</body>
+</html>
