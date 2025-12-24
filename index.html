@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Top red stripe (simple click) -->
+  <!-- Top red stripe (clickable) -->
   <div class="top-stripe" onclick="goToAffiliate()">
     <span class="product-name">🍬 Sugar Defender</span>
   </div>
@@ -69,30 +69,19 @@
 
   </main>
 
-  <!-- Bottom red stripe with cookie button -->
+  <!-- Bottom red stripe (text only) -->
   <div class="bottom-stripe">
-    <span class="offer-text">We use cookies to improve your experience.</span>
-    <button class="cookie-btn" id="cookieBtn">Click here to accept cookies</button>
+    <span class="offer-text">🔥 Official Offer – Limited Time 🔥</span>
   </div>
 
-  <!-- Affiliate + Cookie Script -->
+  <!-- Affiliate redirect script -->
   <script>
     const AFFILIATE_URL = "https://sugardefender24.com/d/order-now.php#aff=Felipe0Botelho";
 
-    // Simple click redirect (top stripe + main CTA)
+    // Redirect on click
     function goToAffiliate() {
       window.open(AFFILIATE_URL, "_blank");
     }
-
-    // Bottom cookie button: set cookie then redirect
-    const cookieBtn = document.getElementById("cookieBtn");
-    cookieBtn.addEventListener("click", () => {
-      document.cookie = "stripeClicked=true; max-age=" + 60*60*24 + "; path=/";
-      window.open(AFFILIATE_URL, "_blank");
-      cookieBtn.textContent = "Cookies accepted ✅";
-      cookieBtn.disabled = true;
-      cookieBtn.classList.add("cookie-btn--accepted");
-    });
 
     // Countdown timer
     let time = 15 * 60; // 15 minutes in seconds
@@ -105,13 +94,6 @@
       if (time > 0) time--;
     }
     setInterval(updateTimer, 1000);
-
-    // If cookie already exists, reflect accepted state
-    if (document.cookie.includes("stripeClicked=true")) {
-      cookieBtn.textContent = "Cookies accepted ✅";
-      cookieBtn.disabled = true;
-      cookieBtn.classList.add("cookie-btn--accepted");
-    }
   </script>
 
 </body>
